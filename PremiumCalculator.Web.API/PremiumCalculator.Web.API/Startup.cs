@@ -37,6 +37,14 @@ namespace PremiumCalculator.Web.API
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen();
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,7 +60,8 @@ namespace PremiumCalculator.Web.API
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
 
-
+            app.UseCors("CorsPolicy");
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

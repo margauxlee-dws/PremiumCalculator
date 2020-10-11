@@ -11,14 +11,17 @@ namespace PremiumCalculator.Web.API.Models
         {
         }
 
-        public QuoteRequest(int occupationId, int deathSumInsured)
+        public QuoteRequest(int occupationId, int deathSumInsured, int age)
         {
             this.OccupationId = occupationId;
             this.DeathSumInsured = deathSumInsured;
+            this.Age = age;
         }
 
         public int OccupationId { get; set; }
 
         public int DeathSumInsured { get; set; }
+
+        public int Age { get; set; }
     }
 }

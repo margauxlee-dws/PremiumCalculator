@@ -36,13 +36,24 @@ namespace PremiumCalculator.Web.API.Controllers
 
             if (query.FirstOrDefault() != null)
             {
-                return new QuoteResponse(req.DeathSumInsured * query.FirstOrDefault().Factor);
+                return new QuoteResponse((req.DeathSumInsured * query.FirstOrDefault().Factor * req.Age)/1000 * 12);
             }
             else
             {
                 return NotFound();
             }
 
+        }
+
+        private static int GetAge(DateTime birthDate)
+        {
+            DateTime n = DateTime.Now; // To avoid a race condition around midnight
+            int age = n.Year - birthDate.Year;
+
+            if (n.Month < birthDate.Month || (n.Month == birthDate.Month && n.Day < birthDate.Day))
+                age--;
+
+            return age;
         }
     }
 }
