@@ -95,8 +95,8 @@ Just thinking, a suggestion will it be agreeable to use a submit button to trigg
 1. The application is a web application.
 2. Fields constraints:  
 	a. Name - maxlengh 100  
-	b. Age range : 1 to 100
-	c. Date of Birth : 1920-01-01 
+	b. Age range : 1 to 100  
+	c. Date of Birth : 1920-01-01   
 	d. Death Sum insured : 1 to 10,000,000
 
  
