@@ -3,19 +3,19 @@ PremiumCalculator is a .Net Core and Angular application for generating death pr
 
 
 ## Technology Stack 
-Visual Studio 2019 
-ASP.NET Core 3.1.402 
-ASP.NET Core 3.1 Runtime (v3.1.7) - Windows Hosting Bundle 
-Node.js v12.19.0 with NPM v6.14.0 
-Swashbuckle.Asp.netCore 5.6.3 
-IIS v10.0.19041.1 
-NOTE: This application was developed using the technologies and versions as listed above. If using different versions, there may be incompabilities. 
+Visual Studio 2019  
+ASP.NET Core 3.1.402  
+ASP.NET Core 3.1 Runtime (v3.1.7) - Windows Hosting Bundle   
+Node.js v12.19.0 with NPM v6.14.0   
+Swashbuckle.Asp.netCore 5.6.3   
+IIS v10.0.19041.1   
+NOTE: This application was developed using the technologies and versions as listed above. If using different versions, there may be incompabilities.    
 
  
-##A rchitecture 
-Frontend – Angular 
-Backend – ASP.NET CORE API 
-Database – SQL Server 2019 Express  
+## Architecture 
+Frontend – Angular   
+Backend – ASP.NET CORE API   
+Database – SQL Server 2019 Express    
 
 
 ## Deployment 
