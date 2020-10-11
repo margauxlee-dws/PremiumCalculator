@@ -1,0 +1,49 @@
+<h1>Premium Calculator</h1>
+
+<p>This will calculate Monthly Death Premium, based on information provided below.  All fields are required.</p>
+
+<div>
+  <label for="name">Name</label>
+  <input id="name" type="text" [(ngModel)]="name">
+</div>
+
+<div>
+  <label for="age">Age</label>
+  <input id="age" type="text" [(ngModel)]="age">
+</div>
+
+<div>
+  <label for="dateOfBirth">Date of Birth</label>
+  <input id="dateOfBirth" type="text" [(ngModel)]="dateOfBirth">
+  <!--<input matInput [matDatepicker]="picker">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>-->
+</div>
+
+<div>
+  <label for="deathSumInsured">Death Sum Insured</label>
+  <input id="deathSumInsured" type="text" [(ngModel)]="deathSumInsured">
+</div>
+
+<div>
+  <label for="selectedOccupation">Occupation</label>
+
+  <select id="selectedOccupation" [(ngModel)]="selectedOccupation" (ngModelChange)="onOptionsSelected(selectedOccupation.id)">
+    <option *ngFor="let occupation of occupations" [ngValue]="occupation">{{occupation.name}}</option>
+  </select>
+</div>
+
+<div>
+  <div><label for="name">Monthly Death Premium</label> <b>{{monthlyDeathPremium}}</b></div>
+</div>
+
+<!--
+  <div>
+  <br/><b>TEST</b>
+  <div><label for="name">Name</label> <b>{{name}}</b></div>
+  <div><label for="name">Age</label> <b>{{age}}</b></div>
+  <div><label for="name">Date of Birth</label> <b>{{dateOfBirth}}</b></div>
+  <div><label for="name">Death Sum Insured</label> <b>{{selectedOccupation | json}}</b></div>
+  <div><label for="name">Occupation</label> <b>{{deathSumInsured}}</b></div>
+</div>
+-->
