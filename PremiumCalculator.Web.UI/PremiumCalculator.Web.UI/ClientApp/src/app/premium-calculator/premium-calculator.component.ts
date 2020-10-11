@@ -1,6 +1,5 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-//import { MatDatepickerModule } from '@angular/material';
 
 @Component({
   selector: 'app-premium-calculator',
@@ -29,6 +28,10 @@ export class PremiumCalculatorComponent {
   }
 
   public onOptionsSelected(event) {
+    if (this.name == null || this.age == null || this.dateOfBirth == null || this.deathSumInsured == null || this.selectedOccupation == null   ) {
+      return;
+    }
+
     var postData: QuoteRequest = {
       occupationId: event,
       deathSumInsured: Number(this.deathSumInsured),

@@ -2,48 +2,58 @@
 
 <p>This will calculate Monthly Death Premium, based on information provided below.  All fields are required.</p>
 
-<div>
+<div class="form-group">
   <label for="name">Name</label>
-  <input id="name" type="text" [(ngModel)]="name">
+  <input id="name" type="text" [(ngModel)]="name" required maxlength="100" class="form-control">
+  <!--<div *ngIf="name?.errors.required">
+    Name is required.
+  </div>-->
 </div>
 
-<div>
+<div class="form-group">
   <label for="age">Age</label>
-  <input id="age" type="text" [(ngModel)]="age">
+  <input id="age" type="number" [(ngModel)]="age" ng-pattern="/^[0-9]*$/" min="1" max="100" required class="form-control">
+  <!--<div *ngIf="age?.invalid && age?.touched" class="invalid-feedback">
+    <div *ngIf="age?.errors.pattern">Only numbers are permitted</div>
+    <div *ngIf="age?.errors.min">Value cannot be smaller than '1'</div>
+    <div *ngIf="age.errors.min">Value cannot be smaller than '1'</div>
+  </div>-->
 </div>
 
-<div>
+<div class="form-group">
   <label for="dateOfBirth">Date of Birth</label>
-  <input id="dateOfBirth" type="text" [(ngModel)]="dateOfBirth">
-  <!--<input matInput [matDatepicker]="picker">
+  <input id="dateOfBirth" type="date" [(ngModel)]="dateOfBirth" min="1920-01-01"  required class="form-control">
+
+  <!--<input matInput [matDatepicker]="picker" [(ngModel)]="dateOfBirth">
   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-datepicker #picker></mat-datepicker>-->
 </div>
 
-<div>
+<div class="form-group">
   <label for="deathSumInsured">Death Sum Insured</label>
-  <input id="deathSumInsured" type="text" [(ngModel)]="deathSumInsured">
+  <input id="deathSumInsured" type="number" [(ngModel)]="deathSumInsured" ng-pattern="/^[0-9]*$/" min="1" max="10000000" required class="form-control">
 </div>
 
-<div>
+<div class="form-group">
   <label for="selectedOccupation">Occupation</label>
 
-  <select id="selectedOccupation" [(ngModel)]="selectedOccupation" (ngModelChange)="onOptionsSelected(selectedOccupation.id)">
+  <select id="selectedOccupation" [(ngModel)]="selectedOccupation" (ngModelChange)="onOptionsSelected(selectedOccupation.id)"  class="form-control chosen-select">
     <option *ngFor="let occupation of occupations" [ngValue]="occupation">{{occupation.name}}</option>
   </select>
 </div>
 
-<div>
-  <div><label for="name">Monthly Death Premium</label> <b>{{monthlyDeathPremium}}</b></div>
+<div class="form-group">
+  <label for="name">Monthly Death Premium</label>
+  <input id="deathSumInsured" type="text" value="{{monthlyDeathPremium}}" class="form-control" readonly><b></b>
 </div>
 
-<!--
+
   <div>
   <br/><b>TEST</b>
-  <div><label for="name">Name</label> <b>{{name}}</b></div>
-  <div><label for="name">Age</label> <b>{{age}}</b></div>
-  <div><label for="name">Date of Birth</label> <b>{{dateOfBirth}}</b></div>
-  <div><label for="name">Death Sum Insured</label> <b>{{selectedOccupation | json}}</b></div>
-  <div><label for="name">Occupation</label> <b>{{deathSumInsured}}</b></div>
+  <div><label for="name">Name:&nbsp;</label> <b>{{name}}</b></div>
+  <div><label for="name">Age:&nbsp;</label> <b>{{age}}</b></div>
+  <div><label for="name">Date of Birth:&nbsp;</label> <b>{{dateOfBirth}}</b></div>
+  <div><label for="name">Death Sum Insured:&nbsp;</label> <b>{{deathSumInsured}}</b></div>
+  <div><label for="name">Occupation:&nbsp;</label> <b>{{selectedOccupation | json}}</b></div>
 </div>
--->
+

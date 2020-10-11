@@ -51,7 +51,8 @@ There is a Publish Profile **IISProfile** that can be used as a starting point, 
 2. The **[source]\PremiumCalculator\PremiumCalculator.Web.UI\PremiumCalculator.Web.UI\ClientApp** is the Angular CLI application.  To install packages, execute **npm install** from this location.
 	a. npm install --save @angular/material  
 	b. npm install --save bootstrap  
-	c. npm install --save jquery
+	c. npm install --save jquery  
+	c. npm install --save cdk   
 
 #### PUBLISH
 1. Using Visual Studio, open **[source]\PremiumCalculator\PremiumCalculator.Web.UI\PremiumCalculator.Web.UI.sln** . 
@@ -92,7 +93,11 @@ Just thinking, a suggestion will it be agreeable to use a submit button to trigg
 
 ## Assumptions 
 1. The application is a web application.
-
+2. Fields constraints:  
+	a. Name - maxlengh 100  
+	b. Age range : 1 to 100
+	c. Date of Birth : 1920-01-01 
+	d. Death Sum insured : 1 to 10,000,000
 
  
 ## Thoughts and considerations: 
