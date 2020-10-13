@@ -5,23 +5,24 @@
 <form #calculateForm="ngForm" (ngSubmit)="onSubmit(calculateForm)">
   <div class="form-group">
     <label for="name">Name</label>
-    <input id="name" name="name" [(ngModel)]="name" #nameInput="ngModel" type="text" maxlength="100" required
+    <input id="name" name="name" [(ngModel)]="name" #nameInput="ngModel" type="text" maxlength="100" pattern="[a-zA-Z ]*$"required
            class="form-control" [ngClass]="{ 'is-invalid': nameInput.invalid }">
     <div *ngIf="nameInput.invalid" class="invalid-feedback">
       <div *ngIf="nameInput.errors.required"> Name is required.</div>
+      <div *ngIf="nameInput.touched">
+        <div *ngIf="nameInput.errors.pattern">Only alphabets are allowed.</div>
+      </div>
     </div>
   </div>
 
   <div class="form-group">
     <label for="age">Age</label>
-    <input id="age" name="age" [(ngModel)]="age" #ageInput="ngModel" type="number" ng-pattern="/^[0-9]*$/" min="1" max="100" required
+    <input id="age" name="age" [(ngModel)]="age" #ageInput="ngModel" type="text" maxlength="3" pattern="^(100|[1-9][0-9]?)$" required
            class="form-control" [ngClass]="{ 'is-invalid': ageInput.invalid }">
     <div *ngIf="ageInput.invalid" class="invalid-feedback">
       <div *ngIf="ageInput.errors.required">Age is required.</div>
       <div *ngIf="ageInput.touched">
-        <div *ngIf="ageInput.errors.pattern">Only numbers are permitted</div>
-        <div *ngIf="ageInput.errors.min">Age cannot be younger than 1</div>
-        <div *ngIf="ageInput.errors.max">Age cannot be older than 100</div>
+        <div *ngIf="ageInput.errors.pattern">Age must be between 1 to 100 only.</div>
       </div>
     </div>
   </div>
@@ -35,16 +36,19 @@
     </div>
 
     <!--<input matInput [matDatepicker]="picker" [(ngModel)]="dateOfBirth">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>-->
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>-->
   </div>
 
   <div class="form-group">
     <label for="deathSumInsured">Death Sum Insured</label>
-    <input id="deathSumInsured" name="deathSumInsured" [(ngModel)]="deathSumInsured" #deathSumInsuredInput="ngModel" type="number" ng-pattern="/^[0-9]*$/" min="1" max="10000000" required
+    <input id="deathSumInsured" name="deathSumInsured" [(ngModel)]="deathSumInsured" #deathSumInsuredInput="ngModel" type="text" maxlength="8" pattern="(?:10000000|[1-9]\d{0,6})$" required
            class="form-control" [ngClass]="{ 'is-invalid': deathSumInsuredInput.invalid }">
     <div *ngIf="deathSumInsuredInput.invalid" class="invalid-feedback">
       <div *ngIf="deathSumInsuredInput.errors.required">Death Sum Insured is required.</div>
+      <div *ngIf="deathSumInsuredInput.touched">
+        <div *ngIf="deathSumInsuredInput.errors.pattern">Death Sum Insured must be a value from 1 to 99,999,999 only.</div>
+      </div>
     </div>
   </div>
 

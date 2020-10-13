@@ -94,9 +94,9 @@ Just thinking, a suggestion will it be agreeable to use a submit button to trigg
 ## Assumptions 
 1. The application is a web application.
 2. Fields constraints:  
-	a. Name - maxlengh 100  
+	a. Name - maxlengh 100, only alphabets allowed, whole name field as specified i.e. no separate firstname and lastname  
 	b. Age range : 1 to 100  
-	c. Date of Birth : 1920-01-01   
+	c. Date of Birth :  
 	d. Death Sum insured : 1 to 10,000,000
 3. Required/mandatory validators are by defahult shown.  Not that pretty, but this can be refined depending on further screen usability designs. 
  
