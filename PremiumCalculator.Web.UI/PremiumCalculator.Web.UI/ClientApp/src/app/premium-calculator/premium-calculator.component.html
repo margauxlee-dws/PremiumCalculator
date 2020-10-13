@@ -2,58 +2,78 @@
 
 <p>This will calculate Monthly Death Premium, based on information provided below.  All fields are required.</p>
 
-<div class="form-group">
-  <label for="name">Name</label>
-  <input id="name" type="text" [(ngModel)]="name" required maxlength="100" class="form-control">
-  <!--<div *ngIf="name?.errors.required">
-    Name is required.
-  </div>-->
-</div>
+<form #calculateForm="ngForm" (ngSubmit)="onSubmit(calculateForm)">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input id="name" name="name" [(ngModel)]="name" #nameInput="ngModel" type="text" maxlength="100" required
+           class="form-control" [ngClass]="{ 'is-invalid': nameInput.invalid }">
+    <div *ngIf="nameInput.invalid" class="invalid-feedback">
+      <div *ngIf="nameInput.errors.required"> Name is required.</div>
+    </div>
+  </div>
 
-<div class="form-group">
-  <label for="age">Age</label>
-  <input id="age" type="number" [(ngModel)]="age" ng-pattern="/^[0-9]*$/" min="1" max="100" required class="form-control">
-  <!--<div *ngIf="age?.invalid && age?.touched" class="invalid-feedback">
-    <div *ngIf="age?.errors.pattern">Only numbers are permitted</div>
-    <div *ngIf="age?.errors.min">Value cannot be smaller than '1'</div>
-    <div *ngIf="age.errors.min">Value cannot be smaller than '1'</div>
-  </div>-->
-</div>
+  <div class="form-group">
+    <label for="age">Age</label>
+    <input id="age" name="age" [(ngModel)]="age" #ageInput="ngModel" type="number" ng-pattern="/^[0-9]*$/" min="1" max="100" required
+           class="form-control" [ngClass]="{ 'is-invalid': ageInput.invalid }">
+    <div *ngIf="ageInput.invalid" class="invalid-feedback">
+      <div *ngIf="ageInput.errors.required">Age is required.</div>
+      <div *ngIf="ageInput.touched">
+        <div *ngIf="ageInput.errors.pattern">Only numbers are permitted</div>
+        <div *ngIf="ageInput.errors.min">Age cannot be younger than 1</div>
+        <div *ngIf="ageInput.errors.max">Age cannot be older than 100</div>
+      </div>
+    </div>
+  </div>
 
-<div class="form-group">
-  <label for="dateOfBirth">Date of Birth</label>
-  <input id="dateOfBirth" type="date" [(ngModel)]="dateOfBirth" min="1920-01-01"  required class="form-control">
+  <div class="form-group">
+    <label for="dateOfBirth">Date of Birth</label>
+    <input id="dateOfBirth" name="dateOfBirth" [(ngModel)]="dateOfBirth" #dateOfBirthInput="ngModel" type="date" min="1920-01-01" required
+           class="form-control" [ngClass]="{ 'is-invalid': dateOfBirthInput.invalid }">
+    <div *ngIf="dateOfBirthInput.invalid" class="invalid-feedback">
+      <div *ngIf="dateOfBirthInput.errors.required">Date of Birth is required.</div>
+    </div>
 
-  <!--<input matInput [matDatepicker]="picker" [(ngModel)]="dateOfBirth">
-  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker #picker></mat-datepicker>-->
-</div>
+    <!--<input matInput [matDatepicker]="picker" [(ngModel)]="dateOfBirth">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>-->
+  </div>
 
-<div class="form-group">
-  <label for="deathSumInsured">Death Sum Insured</label>
-  <input id="deathSumInsured" type="number" [(ngModel)]="deathSumInsured" ng-pattern="/^[0-9]*$/" min="1" max="10000000" required class="form-control">
-</div>
+  <div class="form-group">
+    <label for="deathSumInsured">Death Sum Insured</label>
+    <input id="deathSumInsured" name="deathSumInsured" [(ngModel)]="deathSumInsured" #deathSumInsuredInput="ngModel" type="number" ng-pattern="/^[0-9]*$/" min="1" max="10000000" required
+           class="form-control" [ngClass]="{ 'is-invalid': deathSumInsuredInput.invalid }">
+    <div *ngIf="deathSumInsuredInput.invalid" class="invalid-feedback">
+      <div *ngIf="deathSumInsuredInput.errors.required">Death Sum Insured is required.</div>
+    </div>
+  </div>
 
-<div class="form-group">
-  <label for="selectedOccupation">Occupation</label>
+  <div class="form-group">
+    <label for="selectedOccupation">Occupation</label>
+    <label>&nbsp;&nbsp;(Change my value to generate Monthly Death Premium below)</label>
 
-  <select id="selectedOccupation" [(ngModel)]="selectedOccupation" (ngModelChange)="onOptionsSelected(selectedOccupation.id)"  class="form-control chosen-select">
-    <option *ngFor="let occupation of occupations" [ngValue]="occupation">{{occupation.name}}</option>
-  </select>
-</div>
+    <select id="selectedOccupation" name="selectedOccupation" [(ngModel)]="selectedOccupation" #selectedOccupationInput="ngModel" required 
+            (ngModelChange)="onOptionsSelected(selectedOccupation.id)"
+            class="form-control chosen-select" [ngClass]="{ 'is-invalid': calculateForm.submitted && selectedOccupationInput.invalid }">
+      <option *ngFor="let occupation of occupations" [ngValue]="occupation">{{occupation.name}}</option>
+    </select>
+    <div *ngIf="selectedOccupationInput.invalid" class="invalid-feedback">
+      <div *ngIf="selectedOccupationInput.errors.required">Occupation is required.</div>
+    </div>
+  </div>
 
-<div class="form-group">
-  <label for="name">Monthly Death Premium</label>
-  <input id="deathSumInsured" type="text" value="{{monthlyDeathPremium}}" class="form-control" readonly><b></b>
-</div>
-
+  <div class="form-group">
+    <label for="name">Monthly Death Premium</label>
+    <input id="deathSumInsured" type="text" value="{{monthlyDeathPremium}}" readonly class="form-control"><b></b>
+  </div>
 
   <div>
-  <br/><b>TEST</b>
-  <div><label for="name">Name:&nbsp;</label> <b>{{name}}</b></div>
-  <div><label for="name">Age:&nbsp;</label> <b>{{age}}</b></div>
-  <div><label for="name">Date of Birth:&nbsp;</label> <b>{{dateOfBirth}}</b></div>
-  <div><label for="name">Death Sum Insured:&nbsp;</label> <b>{{deathSumInsured}}</b></div>
-  <div><label for="name">Occupation:&nbsp;</label> <b>{{selectedOccupation | json}}</b></div>
-</div>
+    <br /><b>TEST</b>
+    <div><label for="name">Name:&nbsp;</label> <b>{{name}}</b></div>
+    <div><label for="name">Age:&nbsp;</label> <b>{{age}}</b></div>
+    <div><label for="name">Date of Birth:&nbsp;</label> <b>{{dateOfBirth}}</b></div>
+    <div><label for="name">Death Sum Insured:&nbsp;</label> <b>{{deathSumInsured}}</b></div>
+    <div><label for="name">Occupation:&nbsp;</label> <b>{{selectedOccupation | json}}</b></div>
+  </div>
 
+</form>

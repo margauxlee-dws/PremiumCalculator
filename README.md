@@ -98,7 +98,7 @@ Just thinking, a suggestion will it be agreeable to use a submit button to trigg
 	b. Age range : 1 to 100  
 	c. Date of Birth : 1920-01-01   
 	d. Death Sum insured : 1 to 10,000,000
-
+3. Required/mandatory validators are by defahult shown.  Not that pretty, but this can be refined depending on further screen usability designs. 
  
 ## Thoughts and considerations: 
 1. Database deployment. Entity Framework migration was chosen over DACPAC due to the simplicity of data models.  If database objects and models are more complex, it may be beneficial to use DACPACs for ease of control and manageability. 

@@ -1,9 +1,11 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-premium-calculator',
-  templateUrl: './premium-calculator.component.html'
+  templateUrl: './premium-calculator.component.html',
+  exportAs: 'calculateForm'
 })
 
 export class PremiumCalculatorComponent {
@@ -20,15 +22,18 @@ export class PremiumCalculatorComponent {
   private api_path: string = "http://localhost:5000/";
   private http: HttpClient;
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+  public calculateForm: FormGroup;
+
+  constructor(http: HttpClient) {
     this.http = http;
     this.http.get<Occupation[]>(this.api_path + 'api/Occupations').subscribe(result => {
       this.occupations = result;
     }, error => console.error(error));
+
   }
 
   public onOptionsSelected(event) {
-    if (this.name == null || this.age == null || this.dateOfBirth == null || this.deathSumInsured == null || this.selectedOccupation == null   ) {
+    if (this.name == null || this.age == null || this.dateOfBirth == null || this.deathSumInsured == null || this.selectedOccupation == null) {
       return;
     }
 
@@ -49,8 +54,10 @@ export class PremiumCalculatorComponent {
       });
 
   }
-  
+
 }
+
+
 
 interface Occupation {
   id: number;
